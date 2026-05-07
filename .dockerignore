@@ -1,0 +1,12 @@
+target/
+bin/
+.git/
+.gitignore
+.gitattributes
+.idea/
+.vscode/
+.settings/
+*.iml
+HELP.md
+Readme.md
+templates/

@@ -1,0 +1,7 @@
+com\board\fe\web\BoardPageController.class
+com\board\fe\client\BoardApiClient$1.class
+com\board\fe\BoardFeApplication.class
+com\board\fe\client\BoardApiClient.class
+com\board\fe\config\RestClientConfig.class
+com\board\fe\client\BoardApiClient$BoardJsonBody.class
+com\board\fe\dto\BoardDto.class
