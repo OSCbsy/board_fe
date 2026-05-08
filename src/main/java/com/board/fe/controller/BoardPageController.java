@@ -1,4 +1,4 @@
-package com.board.fe.web;
+package com.board.fe.controller;
 
 import com.board.fe.service.BoardService;
 import org.springframework.stereotype.Controller;
@@ -6,9 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/boards")
 public class BoardPageController {
 
     private final BoardService boardService;
@@ -17,23 +19,18 @@ public class BoardPageController {
         this.boardService = boardService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/boards")
+    @GetMapping("")
     public String list(Model model) {
         model.addAttribute("boards", boardService.findAll());
         return "list";
     }
 
-    @GetMapping("/boards/write")
+    @GetMapping("/write")
     public String writeForm() {
         return "write";
     }
 
-    @PostMapping("/boards")
+    @PostMapping("")
     public String create(@RequestParam String title,
                          @RequestParam String author,
                          @RequestParam String content) {
@@ -41,19 +38,19 @@ public class BoardPageController {
         return "redirect:/boards";
     }
 
-    @GetMapping("/boards/{id}")
+    @GetMapping("/{id}")
     public String detail(@PathVariable Long id, Model model) {
         model.addAttribute("board", boardService.findById(id));
         return "detail";
     }
 
-    @GetMapping("/boards/{id}/edit")
+    @GetMapping("/{id}/edit")
     public String editForm(@PathVariable Long id, Model model) {
         model.addAttribute("board", boardService.findById(id));
         return "edit";
     }
 
-    @PostMapping("/boards/{id}/edit")
+    @PostMapping("/{id}/edit")
     public String update(@PathVariable Long id,
                          @RequestParam String title,
                          @RequestParam String author,
@@ -62,7 +59,7 @@ public class BoardPageController {
         return "redirect:/boards/" + id;
     }
 
-    @PostMapping("/boards/{id}/delete")
+    @PostMapping("/{id}/delete")
     public String delete(@PathVariable Long id) {
         boardService.delete(id);
         return "redirect:/boards";
